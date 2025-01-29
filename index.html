@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Weather App</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #74ebd5, #acb6e5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .weather-container {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .logo {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+        input {
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 15px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .weather-info {
+            margin-top: 20px;
+        }
+        img {
+            width: 50px;
+            height: 50px;
+        }
+        .copyright {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #555;
+            text-align: center;
+        }
+    </style>
+    <script>
+        async function getWeather() {
+            const city = document.getElementById('city').value || 'New Delhi';
+            const apiUrl = `http://api.weatherapi.com/v1/current.json?key=00e5810f59be48c2b58151145252901&q=${city}&aqi=yes`;
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                document.getElementById('location').innerText = data.location.name + ', ' + data.location.country;
+                document.getElementById('temperature').innerText = `Temperature: ${data.current.temp_c}°C`;
+                document.getElementById('condition').innerText = `Condition: ${data.current.condition.text}`;
+                document.getElementById('weather-icon').src = data.current.condition.icon;
+            } catch (error) {
+                alert('Failed to fetch weather data. Please try again.');
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="weather-container">
+        <img src="logo.png" alt="Weather App Logo" class="logo">
+        <h1>Weather App</h1>
+        <input type="text" id="city" placeholder="Enter city name">
+        <button onclick="getWeather()">Get Weather</button>
+        <div id="weather-info" class="weather-info">
+            <h2 id="location"></h2>
+            <p id="temperature"></p>
+            <p id="condition"></p>
+        </div>
+        <div class="copyright">&copy; 2024 SKS. All rights reserved.</div>
+    </div>
+</body>
+</html>
