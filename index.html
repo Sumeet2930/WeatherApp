@@ -59,7 +59,7 @@
     <script>
         async function getWeather() {
             const city = document.getElementById('city').value || 'New Delhi';
-            const apiUrl = `http://api.weatherapi.com/v1/current.json?key=00e5810f59be48c2b58151145252901&q=${city}&aqi=yes`;
+            const apiUrl = `https://api.weatherapi.com/v1/current.json?key=00e5810f59be48c2b58151145252901&q=${city}&aqi=yes`;
             try {
                 const response = await fetch(apiUrl);
                 const data = await response.json();
