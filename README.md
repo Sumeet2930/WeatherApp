@@ -1,4 +1,4 @@
-# 🌦️ WeatherApp
+# 🌦 WeatherApp
 
 **WeatherApp** is a simple and responsive web application that provides real-time weather updates. Users can search for any city around the world and instantly get live weather data including temperature, weather condition, humidity, and more.
 
